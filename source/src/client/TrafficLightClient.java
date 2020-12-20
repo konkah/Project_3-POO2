@@ -1,11 +1,14 @@
 package client;
 
 import gui.Starter;
+import java.util.UUID;
 
 public class TrafficLightClient {
     public static void main(String[] args) {
+        String code = UUID.randomUUID().toString().substring(0, 8);
+
         Starter.CreateAndShow(
-                TrafficLightClientWindow.Create(),
+                TrafficLightClientWindow.Create(code),
                 true
         );
     }

@@ -1,7 +1,11 @@
 package server;
 
+import common.TrafficLightState;
+
 import javax.swing.*;
 import java.awt.*;
+
+import static java.awt.GridBagConstraints.BOTH;
 
 public class TrafficLightServerWindow {
     private JPanel panel;
@@ -10,10 +14,35 @@ public class TrafficLightServerWindow {
     private JTextField green;
     private JTextField yellow;
     private JTextField red;
-    private JTable status;
+
+    private JPanel lights;
 
     public static Container Create() {
         TrafficLightServerWindow instance = new TrafficLightServerWindow();
         return instance.panel;
+    }
+
+    int r = 0;
+    int c = 0;
+    int maxColumns = 7;
+
+    public void addLight(String text, TrafficLightState state) {
+        JLabel light = new JLabel(text);
+        light.setForeground(state.getColor());
+        light.setVisible(true);
+        light.setHorizontalAlignment(JLabel.CENTER);
+
+        if (c == maxColumns) {
+            c = 0;
+            r++;
+        }
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = c;
+        constraints.gridy = r;
+        constraints.ipadx = 10;
+        constraints.ipady = 10;
+        lights.add(light, constraints);
+        c++;
     }
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TrafficLightServerWindow {
-    private JPanel server;
+    private JPanel panel;
 
     private JButton helpButton;
     private JButton creditsButton;
@@ -17,8 +17,6 @@ public class TrafficLightServerWindow {
 
     public static Container Create() {
         TrafficLightServerWindow instance = new TrafficLightServerWindow();
-        return instance.server;
+        return instance.panel;
     }
-
-
 }

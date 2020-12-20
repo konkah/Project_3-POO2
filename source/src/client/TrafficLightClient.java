@@ -1,11 +1,11 @@
-package server;
+package client;
 
 import gui.Starter;
 
-public class TrafficLightServer {
+public class TrafficLightClient {
     public static void main(String[] args) {
         Starter.CreateAndShow(
-                TrafficLightServerWindow.Create(),
+                TrafficLightClientWindow.Create(),
                 true
         );
     }

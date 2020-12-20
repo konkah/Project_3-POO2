@@ -5,7 +5,6 @@ import common.TrafficLightState;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
-import java.util.Optional;
 
 public class TrafficLightServerWindow {
     private JPanel panel;
@@ -47,15 +46,27 @@ public class TrafficLightServerWindow {
     }
 
     public void updateLight(String text, TrafficLightState state) {
-        JLabel light = Arrays.stream(lights.getComponents())
-                .map(c -> (JLabel)c)
-                .filter(c -> c.getText().equals(text))
-                .findFirst().orElse(null);
+        JLabel light = getLight(text);
 
         if (light == null) {
             addLight(text, state);
         } else {
             light.setForeground(state.getColor());
         }
+    }
+
+    public void removeLight(String text) {
+        JLabel light = getLight(text);
+
+        if (light != null) {
+            lights.remove(light);
+        }
+    }
+
+    private JLabel getLight(String text) {
+        return Arrays.stream(lights.getComponents())
+                .map(c -> (JLabel)c)
+                .filter(c -> c.getText().equals(text))
+                .findFirst().orElse(null);
     }
 }

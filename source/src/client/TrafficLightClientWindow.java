@@ -43,12 +43,8 @@ public class TrafficLightClientWindow {
     }
 
     private void setIcon(JLabel label, TrafficLightState state) {
-        System.out.println(label);
-        System.out.println(state);
-        System.out.println(this.currentState);
-
         String color = state.toString().toLowerCase();
-        String onOff = state == this.currentState ? "on" : "off";
+        String onOff = state == currentState ? "on" : "off";
         String file = color + "_" + onOff + ".png";
 
         Path path = Paths.get("src", "resources", file);

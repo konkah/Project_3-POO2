@@ -4,8 +4,8 @@ import common.TrafficLightState;
 
 import javax.swing.*;
 import java.awt.*;
-
-import static java.awt.GridBagConstraints.BOTH;
+import java.util.Arrays;
+import java.util.Optional;
 
 public class TrafficLightServerWindow {
     private JPanel panel;
@@ -44,5 +44,18 @@ public class TrafficLightServerWindow {
         constraints.ipady = 10;
         lights.add(light, constraints);
         c++;
+    }
+
+    public void updateLight(String text, TrafficLightState state) {
+        JLabel light = Arrays.stream(lights.getComponents())
+                .map(c -> (JLabel)c)
+                .filter(c -> c.getText().equals(text))
+                .findFirst().orElse(null);
+
+        if (light == null) {
+            addLight(text, state);
+        } else {
+            light.setForeground(state.getColor());
+        }
     }
 }

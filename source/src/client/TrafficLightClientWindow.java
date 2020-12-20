@@ -18,7 +18,7 @@ public class TrafficLightClientWindow {
     private final String code;
     private JLabel legend;
 
-    private TrafficLightState currentState = TrafficLightState.RED;
+    private TrafficLightState currentState = TrafficLightState.NOT_WORKING;
 
     public TrafficLightClientWindow() {
         code = UUID.randomUUID().toString().substring(0, 8);
@@ -27,7 +27,6 @@ public class TrafficLightClientWindow {
 
     public static Container Create() {
         TrafficLightClientWindow instance = new TrafficLightClientWindow();
-        instance.turnOn();
         return instance.panel;
     }
 

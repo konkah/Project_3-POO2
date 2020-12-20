@@ -6,9 +6,6 @@ import java.awt.*;
 public class TrafficLightServerWindow {
     private JPanel panel;
 
-    private JButton helpButton;
-    private JButton creditsButton;
-
     private JCheckBox offCheckBox;
     private JTextField green;
     private JTextField yellow;

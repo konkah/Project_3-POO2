@@ -6,9 +6,6 @@ import java.awt.*;
 public class TrafficLightClientWindow {
     private JPanel panel;
 
-    private JButton helpButton;
-    private JButton creditsButton;
-    private JLabel code;
     private JLabel red;
     private JLabel yellow;
     private JLabel green;

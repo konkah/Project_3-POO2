@@ -23,8 +23,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="262" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
-  <component name="RunManager" selected="Application.TrafficLightClient">
+  <component name="RunManager" selected="Application.TrafficLightServer">
     <configuration name="TrafficLightClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.TrafficLightClient" />
       <module name="semaphore" />
@@ -53,8 +54,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TrafficLightClient" />
         <item itemvalue="Application.TrafficLightServer" />
+        <item itemvalue="Application.TrafficLightClient" />
       </list>
     </recent_temporary>
   </component>
@@ -74,21 +75,29 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="412" y="154" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1608448621522" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1608449392776">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1608452711760">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1608449392776" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1608449392776">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1608452711760" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1608452711760">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1608449392776" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1608449392776">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1608452711760" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1608452711760">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1608449392776" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1608449392776">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1608452711760" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1608452711760">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1608449392776" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1608452711760" />
+    <state x="498" y="298" key="ReplaceDuplicatesPrompt" timestamp="1608451999342">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="498" y="298" key="ReplaceDuplicatesPrompt/0.0.1366.728@0.0.1366.728" timestamp="1608451999342" />
+    <state x="413" y="125" key="extract.method.dialog" timestamp="1608451994400">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="125" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1608451994400" />
   </component>
 </project>

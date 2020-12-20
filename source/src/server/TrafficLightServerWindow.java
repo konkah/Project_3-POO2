@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
+/**
+ * Main GUI of the client program
+ */
 public class TrafficLightServerWindow {
     private JPanel panel;
 
@@ -16,6 +19,10 @@ public class TrafficLightServerWindow {
 
     private JPanel lights;
 
+    /**
+     * Creates a new instance of GUI
+     * @return the main panel of the GUI
+     */
     public static Container Create() {
         TrafficLightServerWindow instance = new TrafficLightServerWindow();
         return instance.panel;
@@ -25,6 +32,11 @@ public class TrafficLightServerWindow {
     int c = 0;
     int maxColumns = 7;
 
+    /**
+     * Create new or update existent traffic light
+     * @param code of the client
+     * @param state to change the light
+     */
     public void addOrUpdateLight(String code, TrafficLightState state) {
         JLabel light = getLight(code);
 
@@ -62,6 +74,10 @@ public class TrafficLightServerWindow {
         c++;
     }
 
+    /**
+     * Remove a client from the panel of traffic lights
+     * @param code of client to remove
+     */
     public void removeLight(String code) {
         JLabel light = getLight(code);
 

@@ -3,6 +3,9 @@ package common;
 import java.awt.*;
 import java.util.Arrays;
 
+/**
+ * Possible states of a traffic light
+ */
 public enum TrafficLightState {
     NOT_WORKING(0, 0, Color.GRAY),
     RED(1, 2, Color.RED),
@@ -20,6 +23,9 @@ public enum TrafficLightState {
         this.color = color;
     }
 
+    /**
+     * @return state that follows the current one
+     */
     public TrafficLightState getNext() {
         return Arrays.stream(values())
             .filter(s -> s.number == this.next)
@@ -27,6 +33,9 @@ public enum TrafficLightState {
             .orElse(TrafficLightState.NOT_WORKING);
     }
 
+    /**
+     * @return color of the traffic light state
+     */
     public Color getColor() {
         return color;
     }

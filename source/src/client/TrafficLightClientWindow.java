@@ -7,6 +7,9 @@ import java.awt.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Main GUI of the server program
+ */
 public class TrafficLightClientWindow {
     private JPanel panel;
 
@@ -22,11 +25,19 @@ public class TrafficLightClientWindow {
         legend.setText("code: " + code);
     }
 
+    /**
+     * Creates a new instance of GUI
+     * @return the main panel of the GUI
+     */
     public static Container Create(String code) {
         TrafficLightClientWindow instance = new TrafficLightClientWindow(code);
         return instance.panel;
     }
 
+    /**
+     * Set the next state of the traffic light
+     * @param state to traffic light
+     */
     public void setState(TrafficLightState state) {
         currentState = state;
         turnOn();

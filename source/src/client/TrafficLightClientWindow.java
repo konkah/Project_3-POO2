@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 public class TrafficLightClientWindow {
     private JPanel panel;
@@ -13,7 +14,16 @@ public class TrafficLightClientWindow {
     private JLabel red;
     private JLabel yellow;
     private JLabel green;
+
+    private final String code;
+    private JLabel legend;
+
     private TrafficLightState currentState = TrafficLightState.RED;
+
+    public TrafficLightClientWindow() {
+        code = UUID.randomUUID().toString().substring(0, 8);
+        legend.setText("code: " + code);
+    }
 
     public static Container Create() {
         TrafficLightClientWindow instance = new TrafficLightClientWindow();

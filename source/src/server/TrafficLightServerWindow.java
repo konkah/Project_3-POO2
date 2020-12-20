@@ -25,8 +25,25 @@ public class TrafficLightServerWindow {
     int c = 0;
     int maxColumns = 7;
 
-    public void addLight(String text, TrafficLightState state) {
-        JLabel light = new JLabel(text);
+    public void addOrUpdateLight(String code, TrafficLightState state) {
+        JLabel light = getLight(code);
+
+        if (light == null) {
+            addLight(code, state);
+        } else {
+            light.setForeground(state.getColor());
+        }
+    }
+
+    private JLabel getLight(String text) {
+        return Arrays.stream(lights.getComponents())
+                .map(c -> (JLabel)c)
+                .filter(c -> c.getText().equals(text))
+                .findFirst().orElse(null);
+    }
+
+    private void addLight(String code, TrafficLightState state) {
+        JLabel light = new JLabel(code);
         light.setForeground(state.getColor());
         light.setVisible(true);
         light.setHorizontalAlignment(JLabel.CENTER);
@@ -45,28 +62,11 @@ public class TrafficLightServerWindow {
         c++;
     }
 
-    public void updateLight(String text, TrafficLightState state) {
-        JLabel light = getLight(text);
-
-        if (light == null) {
-            addLight(text, state);
-        } else {
-            light.setForeground(state.getColor());
-        }
-    }
-
-    public void removeLight(String text) {
-        JLabel light = getLight(text);
+    public void removeLight(String code) {
+        JLabel light = getLight(code);
 
         if (light != null) {
             lights.remove(light);
         }
-    }
-
-    private JLabel getLight(String text) {
-        return Arrays.stream(lights.getComponents())
-                .map(c -> (JLabel)c)
-                .filter(c -> c.getText().equals(text))
-                .findFirst().orElse(null);
     }
 }

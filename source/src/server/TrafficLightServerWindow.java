@@ -40,29 +40,13 @@ public class TrafficLightServerWindow {
     }
 
     /**
-     * Create new or update existent traffic light
+     * Create new traffic light
      * @param code of the client
      * @param state to change the light
      */
-    public void addOrUpdateLight(String code, TrafficLightState state) {
-        JLabel light = getLight(code);
-
-        if (light == null) {
-            addLight(code, state);
-        } else {
-            light.setForeground(state.getColor());
-        }
-    }
-
-    private JLabel getLight(String text) {
-        return Arrays.stream(lights.getComponents())
-                .map(c -> (JLabel)c)
-                .filter(c -> c.getText().equals(text))
-                .findFirst().orElse(null);
-    }
-
-    private void addLight(String code, TrafficLightState state) {
+    public void addLight(String code, TrafficLightState state) {
         JLabel light = new JLabel(code);
+
         light.setForeground(state.getColor());
         light.setVisible(true);
         light.setHorizontalAlignment(JLabel.CENTER);
@@ -85,6 +69,19 @@ public class TrafficLightServerWindow {
     }
 
     /**
+     * Update existent traffic light
+     * @param code of the client
+     * @param state to change the light
+     */
+    public void updateLight(String code, TrafficLightState state) {
+        JLabel light = getLight(code);
+
+        if (light != null) {
+            light.setForeground(state.getColor());
+        }
+    }
+
+    /**
      * Remove a client from the panel of traffic lights
      * @param code of client to remove
      */
@@ -94,5 +91,12 @@ public class TrafficLightServerWindow {
         if (light != null) {
             lights.remove(light);
         }
+    }
+
+    private JLabel getLight(String text) {
+        return Arrays.stream(lights.getComponents())
+                .map(c -> (JLabel)c)
+                .filter(c -> c.getText().equals(text))
+                .findFirst().orElse(null);
     }
 }

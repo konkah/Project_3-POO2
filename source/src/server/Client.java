@@ -6,7 +6,7 @@ import network.Counterpart;
 
 public class Client {
     private String code;
-    private Counterpart counterpart;
+    private final Counterpart counterpart;
     private TrafficLightState currentState;
     private int secondsFromLastChange;
 
@@ -38,5 +38,9 @@ public class Client {
             secondsFromLastChange++;
             return false;
         }
+    }
+
+    public void setPosition(int position) {
+        code = position+1 + ": " + code;
     }
 }

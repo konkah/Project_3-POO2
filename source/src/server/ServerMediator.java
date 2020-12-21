@@ -54,12 +54,20 @@ public class ServerMediator implements Mediator {
         String code = message.substring(1);
 
         switch (operation) {
-            case '+':
-                clients.add(new Client(code, counterpart, start));
-                window.addOrUpdateLight(code, start);
-                network.sendLight(counterpart, start);
+            case '+': {
+                Client client = new Client(code, counterpart, start);
+                clients.add(client);
+
+                int position = clients.indexOf(client);
+                client.setPosition(position);
+
+                window.addLight(client.getCode(), client.getCurrentState());
+
+                network.sendLight(client.getCounterpart(), client.getCurrentState());
+
                 break;
-            case '-':
+            }
+            case '-': {
                 Client client = getClient(code);
 
                 if (client != null) {
@@ -67,6 +75,7 @@ public class ServerMediator implements Mediator {
                 }
 
                 window.removeLight(code);
+            }
         }
     }
 
@@ -78,7 +87,7 @@ public class ServerMediator implements Mediator {
     }
 
     public void change(Client client) {
-        window.addOrUpdateLight(client.getCode(), client.getCurrentState());
+        window.updateLight(client.getCode(), client.getCurrentState());
         network.sendLight(client.getCounterpart(), client.getCurrentState());
     }
 }

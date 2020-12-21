@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * Changer of traffic lights
+ */
 public class TrafficLightTimeSetter extends KeyAdapter {
     private final JTextField field;
     private final TrafficLightState state;
@@ -34,6 +37,11 @@ public class TrafficLightTimeSetter extends KeyAdapter {
         super.keyReleased(keyEvent);
     }
 
+    /**
+     * Bind a field to a configuration of seconds of a state
+     * @param field to bind seconds changer
+     * @param state which this should change seconds
+     */
     public static void initialize(JTextField field, TrafficLightState state) {
         field.setText(String.valueOf(Settings.seconds.get(state)));
         field.addKeyListener(new TrafficLightTimeSetter(field, state));

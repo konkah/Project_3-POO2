@@ -5,6 +5,9 @@ import java.net.*;
 
 import static common.Settings.*;
 
+/**
+ * Class to manage generic UDP communication
+ */
 public abstract class NetworkManager {
     private final Mediator mediator;
     private Boolean initialized;

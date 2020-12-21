@@ -1,7 +1,7 @@
 package client;
 
-import common.Counterpart;
-import common.Mediator;
+import network.Counterpart;
+import network.Mediator;
 import common.TrafficLightState;
 import gui.Starter;
 

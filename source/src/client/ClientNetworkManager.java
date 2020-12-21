@@ -1,6 +1,6 @@
 package client;
 
-import common.NetworkManager;
+import network.NetworkManager;
 
 /**
  * Manager to Client Network Communications

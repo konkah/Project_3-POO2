@@ -1,9 +1,9 @@
-package common;
+package network;
 
 import java.io.IOException;
 import java.net.*;
 
-import static common.Settings.*;
+import static network.Settings.*;
 
 public abstract class NetworkManager {
     private final Mediator mediator;

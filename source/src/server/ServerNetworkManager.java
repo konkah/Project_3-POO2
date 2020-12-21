@@ -1,7 +1,7 @@
 package server;
 
-import common.Counterpart;
-import common.NetworkManager;
+import network.Counterpart;
+import network.NetworkManager;
 import common.TrafficLightState;
 
 /**

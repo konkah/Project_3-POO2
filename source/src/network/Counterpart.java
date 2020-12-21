@@ -1,10 +1,10 @@
-package common;
+package network;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import static common.Settings.SERVER_IP;
-import static common.Settings.SERVER_PORT;
+import static network.Settings.SERVER_IP;
+import static network.Settings.SERVER_PORT;
 
 public class Counterpart {
     private final InetAddress address;

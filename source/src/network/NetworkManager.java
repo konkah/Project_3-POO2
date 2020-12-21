@@ -3,7 +3,7 @@ package network;
 import java.io.IOException;
 import java.net.*;
 
-import static network.Settings.*;
+import static common.Settings.*;
 
 public abstract class NetworkManager {
     private final Mediator mediator;

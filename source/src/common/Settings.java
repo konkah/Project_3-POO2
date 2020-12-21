@@ -1,4 +1,4 @@
-package network;
+package common;
 
 /**
  * System Parameters
@@ -18,4 +18,19 @@ public class Settings {
      * Communication Buffer Size
      */
     public static final int BUFFER_SIZE = 9;
+
+    /**
+     * Seconds the red light is shown
+     */
+    public static int redSeconds = 3;
+
+    /**
+     * Seconds the yellow light is shown
+     */
+    public static int yellowSeconds = 1;
+
+    /**
+     * Seconds the green light is shown
+     */
+    public static int greenSeconds = 2;
 }

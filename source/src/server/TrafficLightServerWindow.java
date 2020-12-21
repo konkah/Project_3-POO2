@@ -1,7 +1,7 @@
 package server;
 
-import common.Settings;
 import common.TrafficLightState;
+import gui.TrafficLightTimeSetter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,9 +27,9 @@ public class TrafficLightServerWindow {
     int maxColumns = 7;
 
     public TrafficLightServerWindow() {
-        red.setText(String.valueOf(Settings.seconds.get(RED)));
-        yellow.setText(String.valueOf(Settings.seconds.get(YELLOW)));
-        green.setText(String.valueOf(Settings.seconds.get(GREEN)));
+        TrafficLightTimeSetter.initialize(red, RED);
+        TrafficLightTimeSetter.initialize(yellow, YELLOW);
+        TrafficLightTimeSetter.initialize(green, GREEN);
     }
 
     /**

@@ -1,5 +1,10 @@
 package common;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static common.TrafficLightState.*;
+
 /**
  * System Parameters
  */
@@ -20,17 +25,14 @@ public class Settings {
     public static final int BUFFER_SIZE = 9;
 
     /**
-     * Seconds the red light is shown
+     * Seconds the lights are shown
      */
-    public static int redSeconds = 3;
+    public static Map<TrafficLightState, Integer> seconds =
+        new HashMap<TrafficLightState, Integer>() {{
+            put(RED, 3);
+            put(YELLOW, 1);
+            put(GREEN, 2);
+        }};
 
-    /**
-     * Seconds the yellow light is shown
-     */
-    public static int yellowSeconds = 1;
-
-    /**
-     * Seconds the green light is shown
-     */
-    public static int greenSeconds = 2;
+    public static final int WAIT_MILLISECONDS = 1000;
 }

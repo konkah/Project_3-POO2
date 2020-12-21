@@ -5,8 +5,8 @@ import network.Mediator;
 import common.TrafficLightState;
 import gui.Starter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import static common.TrafficLightState.RED;
 
@@ -16,7 +16,8 @@ import static common.TrafficLightState.RED;
 public class ServerMediator implements Mediator {
     private ServerNetworkManager network;
     private TrafficLightServerWindow window;
-    private Map<String, Counterpart> clients;
+    private List<Client> clients;
+    private SemaphoreController semaphore;
 
     private final TrafficLightState start = RED;
 
@@ -29,7 +30,10 @@ public class ServerMediator implements Mediator {
         window = new TrafficLightServerWindow();
         Starter.CreateAndShow(window.getPanel(), true);
 
-        clients = new HashMap<>();
+        clients = new ArrayList<>();
+
+        semaphore = new SemaphoreController(clients, this);
+        semaphore.start();
     }
 
     /**
@@ -51,13 +55,30 @@ public class ServerMediator implements Mediator {
 
         switch (operation) {
             case '+':
-                clients.put(code, counterpart);
+                clients.add(new Client(code, counterpart, start));
                 window.addOrUpdateLight(code, start);
                 network.sendLight(counterpart, start);
                 break;
             case '-':
-                clients.remove(code);
+                Client client = getClient(code);
+
+                if (client != null) {
+                    clients.remove(client);
+                }
+
                 window.removeLight(code);
         }
+    }
+
+    private Client getClient(String code) {
+        return clients.stream()
+                .filter(c -> c.getCode().equals(code))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void change(Client client) {
+        window.addOrUpdateLight(client.getCode(), client.getCurrentState());
+        network.sendLight(client.getCounterpart(), client.getCurrentState());
     }
 }

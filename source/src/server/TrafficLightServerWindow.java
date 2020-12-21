@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
+import static common.TrafficLightState.*;
+
 /**
  * Main GUI of the client program
  */
@@ -25,9 +27,9 @@ public class TrafficLightServerWindow {
     int maxColumns = 7;
 
     public TrafficLightServerWindow() {
-        red.setText(String.valueOf(Settings.redSeconds));
-        yellow.setText(String.valueOf(Settings.yellowSeconds));
-        green.setText(String.valueOf(Settings.greenSeconds));
+        red.setText(String.valueOf(Settings.seconds.get(RED)));
+        yellow.setText(String.valueOf(Settings.seconds.get(YELLOW)));
+        green.setText(String.valueOf(Settings.seconds.get(GREEN)));
     }
 
     /**

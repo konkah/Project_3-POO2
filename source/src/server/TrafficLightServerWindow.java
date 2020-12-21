@@ -19,18 +19,16 @@ public class TrafficLightServerWindow {
 
     private JPanel lights;
 
-    /**
-     * Creates a new instance of GUI
-     * @return the main panel of the GUI
-     */
-    public static Container Create() {
-        TrafficLightServerWindow instance = new TrafficLightServerWindow();
-        return instance.panel;
-    }
-
     int r = 0;
     int c = 0;
     int maxColumns = 7;
+
+    /**
+     * @return the main panel of this window
+     */
+    public JPanel getPanel() {
+        return panel;
+    }
 
     /**
      * Create new or update existent traffic light
@@ -70,7 +68,10 @@ public class TrafficLightServerWindow {
         constraints.gridy = r;
         constraints.ipadx = 10;
         constraints.ipady = 10;
+
         lights.add(light, constraints);
+        lights.updateUI();
+
         c++;
     }
 

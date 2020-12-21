@@ -27,10 +27,7 @@ public enum TrafficLightState {
      * @return state that follows the current one
      */
     public TrafficLightState getNext() {
-        return Arrays.stream(values())
-            .filter(s -> s.number == this.next)
-            .findFirst()
-            .orElse(TrafficLightState.NOT_WORKING);
+        return parse(next);
     }
 
     /**
@@ -38,5 +35,23 @@ public enum TrafficLightState {
      */
     public Color getColor() {
         return color;
+    }
+
+    /**
+     * @return number of the traffic light state
+     */
+    public int getNumber() {
+        return number;
+    }
+
+    /**
+     * @param number of the traffic light
+     * @return the traffic light state corresponding to the number
+     */
+    public static TrafficLightState parse(int number) {
+        return Arrays.stream(values())
+            .filter(s -> s.number == number)
+            .findFirst()
+            .orElse(TrafficLightState.NOT_WORKING);
     }
 }

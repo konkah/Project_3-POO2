@@ -21,17 +21,15 @@ public class TrafficLightClientWindow {
 
     private TrafficLightState currentState = TrafficLightState.NOT_WORKING;
 
-    private TrafficLightClientWindow(String code) {
+    public TrafficLightClientWindow(String code) {
         legend.setText("code: " + code);
     }
 
     /**
-     * Creates a new instance of GUI
-     * @return the main panel of the GUI
+     * @return the main panel of this window
      */
-    public static Container Create(String code) {
-        TrafficLightClientWindow instance = new TrafficLightClientWindow(code);
-        return instance.panel;
+    public JPanel getPanel() {
+        return panel;
     }
 
     /**

@@ -12,25 +12,24 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="a9212" class="javax.swing.JLabel">
+      <component id="56963" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Green"/>
+          <labelFor value="8573f"/>
+          <text value="Red"/>
         </properties>
       </component>
-      <component id="15e22" class="javax.swing.JTextField" binding="green">
+      <component id="8573f" class="javax.swing.JTextField" binding="red">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="20" height="-1"/>
           </grid>
         </constraints>
-        <properties>
-          <text value="5"/>
-        </properties>
+        <properties/>
       </component>
-      <component id="bf756" class="javax.swing.JLabel">
+      <component id="eb861" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -43,6 +42,7 @@
           <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <labelFor value="97247"/>
           <text value="Yellow"/>
         </properties>
       </component>
@@ -52,9 +52,7 @@
             <preferred-size width="20" height="-1"/>
           </grid>
         </constraints>
-        <properties>
-          <text value="1"/>
-        </properties>
+        <properties/>
       </component>
       <component id="d26cb" class="javax.swing.JLabel">
         <constraints>
@@ -64,25 +62,24 @@
           <text value="sec."/>
         </properties>
       </component>
-      <component id="56963" class="javax.swing.JLabel">
+      <component id="a9212" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Red"/>
+          <labelFor value="15e22"/>
+          <text value="Green"/>
         </properties>
       </component>
-      <component id="8573f" class="javax.swing.JTextField" binding="red">
+      <component id="15e22" class="javax.swing.JTextField" binding="green">
         <constraints>
           <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="20" height="-1"/>
           </grid>
         </constraints>
-        <properties>
-          <text value="5"/>
-        </properties>
+        <properties/>
       </component>
-      <component id="eb861" class="javax.swing.JLabel">
+      <component id="bf756" class="javax.swing.JLabel">
         <constraints>
           <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

@@ -1,5 +1,6 @@
 package server;
 
+import common.Settings;
 import common.TrafficLightState;
 
 import javax.swing.*;
@@ -22,6 +23,12 @@ public class TrafficLightServerWindow {
     int r = 0;
     int c = 0;
     int maxColumns = 7;
+
+    public TrafficLightServerWindow() {
+        red.setText(String.valueOf(Settings.redSeconds));
+        yellow.setText(String.valueOf(Settings.yellowSeconds));
+        green.setText(String.valueOf(Settings.greenSeconds));
+    }
 
     /**
      * @return the main panel of this window

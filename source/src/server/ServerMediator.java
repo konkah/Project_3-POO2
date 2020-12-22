@@ -5,6 +5,9 @@ import network.Mediator;
 import common.TrafficLightState;
 import gui.Starter;
 
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +40,16 @@ public class ServerMediator implements Mediator {
         semaphore.start();
 
         window = new TrafficLightServerWindow(this);
-        Starter.CreateAndShow(window.getPanel(), true);
+        JFrame frame = Starter.CreateAndShow(window.getPanel(), true);
         window.turnOn();
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                network.end(clients);
+                super.windowClosing(windowEvent);
+            }
+        });
     }
 
     /**
@@ -84,7 +95,6 @@ public class ServerMediator implements Mediator {
             }
             case '-': {
                 Client client = getClient(code);
-                System.out.println(client);
 
                 if (client != null) {
                     clients.remove(client);

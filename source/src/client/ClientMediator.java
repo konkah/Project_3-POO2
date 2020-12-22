@@ -17,6 +17,7 @@ public class ClientMediator implements Mediator {
     private String code;
     private ClientNetworkManager network;
     private TrafficLightClientWindow window;
+    private JFrame frame;
 
     /**
      * Start client GUI
@@ -25,7 +26,7 @@ public class ClientMediator implements Mediator {
         code = createNewCode();
 
         window = new TrafficLightClientWindow(code);
-        JFrame frame = Starter.CreateAndShow(window.getPanel(), true);
+        frame = Starter.CreateAndShow(window.getPanel(), true);
 
         network = new ClientNetworkManager(this);
         network.start(code);
@@ -58,7 +59,13 @@ public class ClientMediator implements Mediator {
      */
     @Override
     public void handleSuccessReceive(Counterpart counterpart, String message) {
-        int number = Integer.parseInt(message.trim());
+        message = message.trim();
+        if (message.equals(network.closeMessage)) {
+            frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            return;
+        }
+
+        int number = Integer.parseInt(message);
         TrafficLightState state = TrafficLightState.parse(number);
         window.setState(state);
     }

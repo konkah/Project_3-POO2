@@ -14,6 +14,8 @@ public abstract class NetworkManager {
     private DatagramSocket socket;
     private Counterpart server;
 
+    public final String closeMessage = "close";
+
     protected NetworkManager(Boolean isServer, Mediator mediator) {
         this.mediator = mediator;
         try {

@@ -2,6 +2,8 @@ package server;
 
 import network.NetworkManager;
 
+import java.util.List;
+
 /**
  * Manager to Server Network Communications
  */
@@ -19,5 +21,14 @@ public class ServerNetworkManager extends NetworkManager {
             client.getCounterpart(),
             String.valueOf(client.getCurrentState().getNumber())
         );
+    }
+
+    public void end(List<Client> clients) {
+        for (Client client : clients) {
+            send(
+                client.getCounterpart(),
+                closeMessage
+            );
+        }
     }
 }

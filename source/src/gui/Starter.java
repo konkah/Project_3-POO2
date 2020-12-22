@@ -2,21 +2,20 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class Starter {
-    public static JFrame CreateAndShow(Container panel, Boolean exitOnClose) {
+    public static JFrame CreateAndShow(Container panel, Boolean mainWindow) {
         JFrame frame = new JFrame("Traffic Light");
         frame.setContentPane(panel);
 
-        if (exitOnClose) {
+        if (mainWindow) {
             frame.setDefaultCloseOperation(
                     JFrame.EXIT_ON_CLOSE
             );
-        }
 
-        setMenu(frame);
+            setMenu(frame);
+        }
 
         frame.pack();
         frame.setVisible(true);
@@ -31,9 +30,10 @@ public class Starter {
         createMenuItem(fileMenu, "Close", KeyEvent.VK_C);
 
         JMenu helpMenu = createMenu(menuBar, "Help", KeyEvent.VK_H);
-        createMenuItem(helpMenu, "Help", KeyEvent.VK_H);
-        createMenuItem(helpMenu, "Disclaimer", KeyEvent.VK_D);
-        createMenuItem(helpMenu, "About", KeyEvent.VK_A);
+        createHelpMenuItem(helpMenu, "Help", KeyEvent.VK_H);
+        createHelpMenuItem(helpMenu, "Disclaimer", KeyEvent.VK_D);
+        helpMenu.addSeparator();
+        createHelpMenuItem(helpMenu, "About", KeyEvent.VK_A);
 
         frame.setJMenuBar(menuBar);
     }
@@ -45,9 +45,23 @@ public class Starter {
         return fileMenu;
     }
 
-    private static void createMenuItem(JMenu menu, String text, int shortcut) {
-        JMenuItem close = new JMenuItem(text, shortcut);
-        close.setAccelerator(KeyStroke.getKeyStroke(shortcut, InputEvent.ALT_MASK));
-        menu.add(close);
+    private static void createHelpMenuItem(JMenu menu, String text, int shortcut) {
+        JMenuItem menuItem = createMenuItem(menu, text, shortcut);
+        menuItem.addActionListener(openHelp(text));
+    }
+
+    private static JMenuItem createMenuItem(JMenu menu, String text, int shortcut) {
+        JMenuItem menuItem = new JMenuItem(text, shortcut);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(shortcut, InputEvent.ALT_MASK));
+        menu.add(menuItem);
+        return menuItem;
+    }
+    private static ActionListener openHelp(String text) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Starter.CreateAndShow(new Help(text).getPanel(), false);
+            }
+        };
     }
 }

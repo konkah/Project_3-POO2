@@ -1,0 +1,12 @@
+This program was created as an educational project to learn how to communicate in a network.
+
+The menu options are:
+
+– From the "File" menu, you can choose to close the program;
+– From the "Help" menu, one can choose see standard texts: "Help", "Disclaimer", and "About".
+
+Technical stuff:
+
+– The program was written in Java 1.8 and runs on most of desktop and notebook operating systems;
+– No user information is collected, stored, or transmitted by the program;
+– The server and client ports must be opened to allow communication between them;

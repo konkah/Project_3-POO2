@@ -22,9 +22,10 @@ public class TrafficLightServerWindow {
 
     private JPanel lights;
 
-    int r = 0;
-    int c = 0;
-    int maxColumns = 7;
+    int maxRows = 15;
+    int maxCols = 5;
+    String empty = "_: ________";
+    JLabel[][] occupied = new JLabel[maxRows][maxCols];
 
     public TrafficLightServerWindow() {
         TrafficLightTimeSetter.initialize(red, RED);
@@ -36,6 +37,12 @@ public class TrafficLightServerWindow {
      * @return the main panel of this window
      */
     public JPanel getPanel() {
+        for (int r = 0; r < maxRows; r++) {
+            for (int c = 0; c < maxCols; c++) {
+                replaceLight(empty, Color.BLACK, r, c);
+            }
+        }
+
         return panel;
     }
 
@@ -45,27 +52,48 @@ public class TrafficLightServerWindow {
      * @param state to change the light
      */
     public void addLight(String code, TrafficLightState state) {
-        JLabel light = new JLabel(code);
+        int r,c;
+        do{
+            r = getRandom(maxRows);
+            c = getRandom(maxCols);
+            System.out.println(code+": "+r+","+c);
+        }
+        while (!occupied[r][c].getText().equals(empty));
 
-        light.setForeground(state.getColor());
+        replaceLight(code, state.getColor(), r, c);
+    }
+
+    private int getRandom(int max) {
+        double random;
+
+        // to avoid returning max
+        do {
+           random = Math.random();
+        } while (random == 1);
+
+        return (int) Math.floor(random * max);
+    }
+
+    private void replaceLight(String text, Color color, int row, int col) {
+        JLabel light = new JLabel(text);
+
+        light.setForeground(color);
         light.setVisible(true);
         light.setHorizontalAlignment(JLabel.CENTER);
 
-        if (c == maxColumns) {
-            c = 0;
-            r++;
-        }
-
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = c;
-        constraints.gridy = r;
+        constraints.gridx = col;
+        constraints.gridy = row;
         constraints.ipadx = 10;
         constraints.ipady = 10;
+
+        if (occupied[row][col] != null)
+            lights.remove(occupied[row][col]);
 
         lights.add(light, constraints);
         lights.updateUI();
 
-        c++;
+        occupied[row][col] = light;
     }
 
     /**
@@ -87,9 +115,16 @@ public class TrafficLightServerWindow {
      */
     public void removeLight(String code) {
         JLabel light = getLight(code);
+        if (light == null) return;
 
-        if (light != null) {
-            lights.remove(light);
+        for (int r = 0; r < maxRows; r++) {
+            for (int c = 0; c < maxCols; c++) {
+                if (occupied[r][c] == light) {
+                    replaceLight("_: ________", Color.BLACK, r, c);
+                    occupied[r][c] = null;
+                    return;
+                }
+            }
         }
     }
 

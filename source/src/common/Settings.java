@@ -20,6 +20,11 @@ public class Settings {
     public static final int SERVER_PORT = 2932;
 
     /**
+     * Limit of clients to connect to the server
+     */
+    public static final int CLIENTS_LIMIT = 30;
+
+    /**
      * Communication Buffer Size
      */
     public static final int BUFFER_SIZE = 9;

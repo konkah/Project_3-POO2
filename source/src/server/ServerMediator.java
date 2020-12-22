@@ -8,6 +8,7 @@ import gui.Starter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static common.Settings.CLIENTS_LIMIT;
 import static common.TrafficLightState.RED;
 
 /**
@@ -60,6 +61,15 @@ public class ServerMediator implements Mediator {
 
         switch (operation) {
             case '+': {
+                if (clients.size() >= CLIENTS_LIMIT) {
+                    window.showError(
+                            "Fail on adding client code " + code + ":\n"
+                            + "The limit of clients connected is " + CLIENTS_LIMIT + ". "
+                            + "To add more clients, remove some of the current ones."
+                    );
+                    break;
+                }
+
                 Client client = new Client(code, counterpart, start);
                 clients.add(client);
 

@@ -27,7 +27,9 @@ public class SemaphoreController {
             protected void execute() {
                 for(Client client : clients) {
                     boolean changed = client.nextSecond();
-                    mediator.change(client);
+                    if (changed) {
+                        mediator.change(client);
+                    }
                 }
             }
         });

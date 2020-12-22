@@ -17,7 +17,6 @@ public class TrafficLightClientWindow {
 
     private JLabel legend;
 
-    private final int imageLoaded = 8;
     private TrafficLightState currentState = TrafficLightState.NOT_WORKING;
 
     public TrafficLightClientWindow(String code) {

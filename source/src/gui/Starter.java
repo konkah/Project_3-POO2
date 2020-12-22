@@ -27,7 +27,8 @@ public class Starter {
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = createMenu(menuBar, "File", KeyEvent.VK_F);
-        createMenuItem(fileMenu, "Close", KeyEvent.VK_C);
+        JMenuItem close = createMenuItem(fileMenu, "Close", KeyEvent.VK_C);
+        close.addActionListener(close(frame));
 
         JMenu helpMenu = createMenu(menuBar, "Help", KeyEvent.VK_H);
         createHelpMenuItem(helpMenu, "Help", KeyEvent.VK_H);
@@ -56,6 +57,16 @@ public class Starter {
         menu.add(menuItem);
         return menuItem;
     }
+
+    private static ActionListener close(JFrame frame) {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+            }
+        };
+    }
+
     private static ActionListener openHelp(String text) {
         return new ActionListener() {
             @Override

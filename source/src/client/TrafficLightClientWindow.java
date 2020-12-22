@@ -3,8 +3,7 @@ package client;
 import common.TrafficLightState;
 
 import javax.swing.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.net.URL;
 
 /**
  * Main GUI of the server program
@@ -50,10 +49,11 @@ public class TrafficLightClientWindow {
     private void setIcon(JLabel label, TrafficLightState state) {
         String color = state.toString().toLowerCase();
         String onOff = state == currentState ? "on" : "off";
-        String file = color + "_" + onOff + ".png";
+        String file = "/" + color + "_" + onOff + ".png";
 
-        Path path = Paths.get("src", "resources", file);
-        ImageIcon image = new ImageIcon(path.toString());
+        URL url = getClass().getResource(file);
+
+        ImageIcon image = new ImageIcon(url);
         label.setIcon(image);
     }
 }

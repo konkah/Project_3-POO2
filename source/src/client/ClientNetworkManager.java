@@ -13,4 +13,8 @@ public class ClientNetworkManager extends NetworkManager {
     public void start(String code) {
         send("+" + code);
     }
+
+    public void end(String code) {
+        send("-" + code);
+    }
 }

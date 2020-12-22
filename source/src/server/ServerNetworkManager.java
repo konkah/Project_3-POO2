@@ -1,8 +1,6 @@
 package server;
 
-import network.Counterpart;
 import network.NetworkManager;
-import common.TrafficLightState;
 
 /**
  * Manager to Server Network Communications
@@ -13,10 +11,13 @@ public class ServerNetworkManager extends NetworkManager {
     }
 
     /**
-     * @param counterpart is the address of the client
-     * @param state is the new state to client traffic light
+     * Update client light
+     * @param client that should receive the new status
      */
-    public void sendLight(Counterpart counterpart, TrafficLightState state) {
-        send(counterpart, String.valueOf(state.getNumber()));
+    public void sendLight(Client client) {
+        send(
+                client.getCounterpart(),
+                String.valueOf(client.getCurrentState().getNumber())
+        );
     }
 }

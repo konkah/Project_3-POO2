@@ -9,6 +9,7 @@ import network.Counterpart;
  */
 public class Client {
     private String code;
+    private int position;
     private final Counterpart counterpart;
     private TrafficLightState currentState;
     private int secondsFromLastChange;
@@ -61,7 +62,12 @@ public class Client {
      * Add position to the code of the client
      * @param position of the client in the clients list
      */
-    public void addPosition(int position) {
-        code = position+1 + ": " + code;
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return position+1 + ": " + code;
     }
 }

@@ -59,22 +59,22 @@ public class ServerMediator implements Mediator {
                 clients.add(client);
 
                 int position = clients.indexOf(client);
-                client.addPosition(position);
+                client.setPosition(position);
 
-                window.addLight(client.getCode(), client.getCurrentState());
+                window.addLight(client);
 
-                network.sendLight(client.getCounterpart(), client.getCurrentState());
+                network.sendLight(client);
 
                 break;
             }
             case '-': {
                 Client client = getClient(code);
+                System.out.println(client);
 
                 if (client != null) {
                     clients.remove(client);
+                    window.removeLight(client);
                 }
-
-                window.removeLight(code);
             }
         }
     }
@@ -91,7 +91,7 @@ public class ServerMediator implements Mediator {
      * @param client to advance traffic light
      */
     public void change(Client client) {
-        window.updateLight(client.getCode(), client.getCurrentState());
-        network.sendLight(client.getCounterpart(), client.getCurrentState());
+        window.updateLight(client);
+        network.sendLight(client);
     }
 }

@@ -1,10 +1,13 @@
 package client;
 
-import network.Counterpart;
-import network.Mediator;
 import common.TrafficLightState;
 import gui.Starter;
+import network.Counterpart;
+import network.Mediator;
 
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.UUID;
 
 /**
@@ -22,10 +25,18 @@ public class ClientMediator implements Mediator {
         code = createNewCode();
 
         window = new TrafficLightClientWindow(code);
-        Starter.CreateAndShow(window.getPanel(), true);
+        JFrame frame = Starter.CreateAndShow(window.getPanel(), true);
 
         network = new ClientNetworkManager(this);
         network.start(code);
+
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                network.end(code);
+                super.windowClosing(windowEvent);
+            }
+        });
     }
 
     private String createNewCode() {

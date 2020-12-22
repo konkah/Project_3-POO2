@@ -1,6 +1,5 @@
 package server;
 
-import common.TrafficLightState;
 import gui.TrafficLightTimeSetter;
 
 import javax.swing.*;
@@ -39,7 +38,7 @@ public class TrafficLightServerWindow {
     public JPanel getPanel() {
         for (int r = 0; r < maxRows; r++) {
             for (int c = 0; c < maxCols; c++) {
-                replaceLight(empty, Color.BLACK, r, c);
+                turnOffLight(r, c);
             }
         }
 
@@ -48,19 +47,48 @@ public class TrafficLightServerWindow {
 
     /**
      * Create new traffic light
-     * @param code of the client
-     * @param state to change the light
+     * @param client to add light
      */
-    public void addLight(String code, TrafficLightState state) {
+    public void addLight(Client client) {
         int r,c;
         do{
             r = getRandom(maxRows);
             c = getRandom(maxCols);
-            System.out.println(code+": "+r+","+c);
         }
         while (!occupied[r][c].getText().equals(empty));
 
-        replaceLight(code, state.getColor(), r, c);
+        replaceLight(client.toString(), client.getCurrentState().getColor(), r, c);
+    }
+
+    /**
+     * Update existent traffic light
+     * @param client to add light
+     */
+    public void updateLight(Client client) {
+        JLabel light = getLight(client);
+
+        if (light != null) {
+            light.setForeground(client.getCurrentState().getColor());
+        }
+    }
+
+    /**
+     * Remove a client from the panel of traffic lights
+     * @param client to add light
+     */
+    public void removeLight(Client client) {
+        JLabel light = getLight(client);
+        if (light == null) return;
+
+        for (int r = 0; r < maxRows; r++) {
+            for (int c = 0; c < maxCols; c++) {
+                if (occupied[r][c] == light) {
+                    turnOffLight(r, c);
+                    occupied[r][c] = null;
+                    return;
+                }
+            }
+        }
     }
 
     private int getRandom(int max) {
@@ -72,6 +100,10 @@ public class TrafficLightServerWindow {
         } while (random == 1);
 
         return (int) Math.floor(random * max);
+    }
+
+    private void turnOffLight(int row, int col) {
+        replaceLight(empty, Color.BLACK, row, col);
     }
 
     private void replaceLight(String text, Color color, int row, int col) {
@@ -96,42 +128,10 @@ public class TrafficLightServerWindow {
         occupied[row][col] = light;
     }
 
-    /**
-     * Update existent traffic light
-     * @param code of the client
-     * @param state to change the light
-     */
-    public void updateLight(String code, TrafficLightState state) {
-        JLabel light = getLight(code);
-
-        if (light != null) {
-            light.setForeground(state.getColor());
-        }
-    }
-
-    /**
-     * Remove a client from the panel of traffic lights
-     * @param code of client to remove
-     */
-    public void removeLight(String code) {
-        JLabel light = getLight(code);
-        if (light == null) return;
-
-        for (int r = 0; r < maxRows; r++) {
-            for (int c = 0; c < maxCols; c++) {
-                if (occupied[r][c] == light) {
-                    replaceLight("_: ________", Color.BLACK, r, c);
-                    occupied[r][c] = null;
-                    return;
-                }
-            }
-        }
-    }
-
-    private JLabel getLight(String text) {
+    private JLabel getLight(Client client) {
         return Arrays.stream(lights.getComponents())
                 .map(c -> (JLabel)c)
-                .filter(c -> c.getText().equals(text))
+                .filter(c -> c.getText().equals(client.toString()))
                 .findFirst().orElse(null);
     }
 }

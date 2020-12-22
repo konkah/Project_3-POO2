@@ -6,7 +6,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 public class Starter {
-    public static void CreateAndShow(Container panel, Boolean exitOnClose) {
+    public static JFrame CreateAndShow(Container panel, Boolean exitOnClose) {
         JFrame frame = new JFrame("Traffic Light");
         frame.setContentPane(panel);
 
@@ -20,6 +20,8 @@ public class Starter {
 
         frame.pack();
         frame.setVisible(true);
+
+        return frame;
     }
 
     private static void setMenu(JFrame frame) {

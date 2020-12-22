@@ -54,6 +54,14 @@ public class TrafficLightClientWindow {
         Path path = Paths.get("src", "resources", file);
         String absolutePath = path.toAbsolutePath().toString();
 
-        label.setIcon(new ImageIcon(absolutePath));
+        ImageIcon image = new ImageIcon(absolutePath);
+        label.setIcon(image);
+
+        int status = image.getImageLoadStatus();
+        int loaded = 8;
+
+        if (status != loaded) {
+            label.setText(absolutePath);
+        }
     }
 }

@@ -4,6 +4,8 @@ import gui.TrafficLightTimeSetter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 import static common.TrafficLightState.*;
@@ -14,7 +16,7 @@ import static common.TrafficLightState.*;
 public class TrafficLightServerWindow {
     private JPanel panel;
 
-    private JCheckBox offCheckBox;
+    private JCheckBox serverOn;
     private JTextField green;
     private JTextField yellow;
     private JTextField red;
@@ -26,10 +28,18 @@ public class TrafficLightServerWindow {
     String empty = "_: ________";
     JLabel[][] occupied = new JLabel[maxRows][maxCols];
 
-    public TrafficLightServerWindow() {
+    public TrafficLightServerWindow(ServerMediator mediator) {
         TrafficLightTimeSetter.initialize(red, RED);
         TrafficLightTimeSetter.initialize(yellow, YELLOW);
         TrafficLightTimeSetter.initialize(green, GREEN);
+
+        serverOn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mediator.toggleState(serverOn.isSelected());
+                serverOn.setText(serverOn.isSelected() ? "On" : "Off");
+            }
+        });
     }
 
     /**
@@ -89,6 +99,14 @@ public class TrafficLightServerWindow {
                 }
             }
         }
+    }
+
+    /**
+     * Activate form button that tells server is active
+     */
+    public void turnOn() {
+        serverOn.setSelected(true);
+        serverOn.setText("On");
     }
 
     private int getRandom(int max) {

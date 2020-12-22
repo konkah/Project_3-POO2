@@ -19,6 +19,8 @@ public class ServerMediator implements Mediator {
     private List<Client> clients;
     private SemaphoreController semaphore;
 
+    private boolean serverOn = false;
+
     private final TrafficLightState start = RED;
 
     /**
@@ -26,14 +28,16 @@ public class ServerMediator implements Mediator {
      */
     public void start() {
         network = new ServerNetworkManager(this);
-
-        window = new TrafficLightServerWindow();
-        Starter.CreateAndShow(window.getPanel(), true);
+        serverOn = true;
 
         clients = new ArrayList<>();
 
         semaphore = new SemaphoreController(clients, this);
         semaphore.start();
+
+        window = new TrafficLightServerWindow(this);
+        Starter.CreateAndShow(window.getPanel(), true);
+        window.turnOn();
     }
 
     /**
@@ -93,5 +97,13 @@ public class ServerMediator implements Mediator {
     public void change(Client client) {
         window.updateLight(client);
         network.sendLight(client);
+    }
+
+    public void toggleState(boolean on) {
+        serverOn = on;
+    }
+
+    public boolean isServerOn() {
+        return serverOn;
     }
 }

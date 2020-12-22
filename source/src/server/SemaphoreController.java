@@ -25,8 +25,10 @@ public class SemaphoreController {
         Thread thread = new Thread(new Interval(WAIT_MILLISECONDS) {
             @Override
             protected void execute() {
+                boolean on = mediator.isServerOn();
+
                 for(Client client : clients) {
-                    boolean changed = client.nextSecond();
+                    boolean changed = client.nextSecond(on);
                     if (changed) {
                         mediator.change(client);
                     }

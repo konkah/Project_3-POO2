@@ -32,6 +32,7 @@ public class Settings {
             put(RED, 3);
             put(YELLOW, 1);
             put(GREEN, 2);
+            put(NOT_WORKING, 0);
         }};
 
     public static final int WAIT_MILLISECONDS = 1000;

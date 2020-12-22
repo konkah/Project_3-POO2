@@ -4,11 +4,13 @@ import common.Settings;
 import common.TrafficLightState;
 import network.Counterpart;
 
+import static common.TrafficLightState.*;
+
 /**
  * Properties of traffic light clients
  */
 public class Client {
-    private String code;
+    private final String code;
     private int position;
     private final Counterpart counterpart;
     private TrafficLightState currentState;
@@ -45,16 +47,26 @@ public class Client {
      * Handle the next second state of client
      * - advance if the time of the current traffic light is over
      * - else, add one more second to the time
+     * @param isServerOn to set client as active or not
      * @return if the traffic light changed
      */
-    public Boolean nextSecond() {
-        if (secondsFromLastChange >= Settings.seconds.get(currentState)) {
-            currentState = currentState.getNext();
-            secondsFromLastChange = 0;
-            return true;
+    public Boolean nextSecond(boolean isServerOn) {
+        if (isServerOn) {
+            if (secondsFromLastChange >= Settings.seconds.get(currentState)) {
+                currentState = currentState.getNext();
+                secondsFromLastChange = 0;
+                return true;
+            } else {
+                secondsFromLastChange++;
+                return false;
+            }
         } else {
-            secondsFromLastChange++;
-            return false;
+            if (currentState == NOT_WORKING) {
+                return false;
+            } else {
+                currentState = NOT_WORKING;
+                return true;
+            }
         }
     }
 

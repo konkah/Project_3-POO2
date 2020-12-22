@@ -7,7 +7,7 @@ import java.util.Arrays;
  * Possible states of a traffic light
  */
 public enum TrafficLightState {
-    NOT_WORKING(0, 0, Color.GRAY),
+    NOT_WORKING(0, 1, Color.GRAY),
     RED(1, 2, Color.RED),
     GREEN(2, 3, Color.GREEN),
     YELLOW(3, 1, Color.YELLOW),

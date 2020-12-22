@@ -16,8 +16,8 @@ public class ServerNetworkManager extends NetworkManager {
      */
     public void sendLight(Client client) {
         send(
-                client.getCounterpart(),
-                String.valueOf(client.getCurrentState().getNumber())
+            client.getCounterpart(),
+            String.valueOf(client.getCurrentState().getNumber())
         );
     }
 }

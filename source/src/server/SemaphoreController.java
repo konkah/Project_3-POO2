@@ -4,7 +4,7 @@ import common.Interval;
 
 import java.util.List;
 
-import static common.Settings.WAIT_MILLISECONDS;
+import static common.Settings.ONE_SECOND;
 
 /**
  * Controller to advance traffic light of clients
@@ -22,7 +22,7 @@ public class SemaphoreController {
      * start the process of advancing traffic lights
      */
     public void start() {
-        Thread thread = new Thread(new Interval(WAIT_MILLISECONDS) {
+        Thread thread = new Thread(new Interval(ONE_SECOND) {
             @Override
             protected void execute() {
                 boolean on = mediator.isServerOn();

@@ -6,7 +6,7 @@ import common.TrafficLightState;
 import javax.swing.*;
 import java.net.URL;
 
-import static common.Settings.WAIT_MILLISECONDS;
+import static common.Settings.ONE_SECOND;
 import static common.TrafficLightState.NOT_WORKING;
 import static common.TrafficLightState.YELLOW;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
@@ -32,7 +32,7 @@ public class TrafficLightClientWindow {
     }
 
     private void blinkIfNotWorking() {
-        Thread thread = new Thread(new Interval(WAIT_MILLISECONDS/2) {
+        Thread thread = new Thread(new Interval(ONE_SECOND /2) {
             @Override
             protected void execute() {
                 if (currentState != NOT_WORKING)

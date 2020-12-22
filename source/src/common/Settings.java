@@ -35,5 +35,5 @@ public class Settings {
             put(NOT_WORKING, 0);
         }};
 
-    public static final int WAIT_MILLISECONDS = 1000;
+    public static final int ONE_SECOND = 1000;
 }

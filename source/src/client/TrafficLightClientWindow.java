@@ -18,6 +18,7 @@ public class TrafficLightClientWindow {
 
     private JLabel legend;
 
+    private final int imageLoaded = 8;
     private TrafficLightState currentState = TrafficLightState.NOT_WORKING;
 
     public TrafficLightClientWindow(String code) {
@@ -58,9 +59,8 @@ public class TrafficLightClientWindow {
         label.setIcon(image);
 
         int status = image.getImageLoadStatus();
-        int loaded = 8;
 
-        if (status != loaded) {
+        if (status != imageLoaded) {
             label.setText(absolutePath);
         }
     }

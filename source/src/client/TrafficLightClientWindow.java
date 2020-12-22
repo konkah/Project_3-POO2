@@ -9,6 +9,7 @@ import java.net.URL;
 import static common.Settings.WAIT_MILLISECONDS;
 import static common.TrafficLightState.NOT_WORKING;
 import static common.TrafficLightState.YELLOW;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * Main GUI of the server program
@@ -80,5 +81,13 @@ public class TrafficLightClientWindow {
 
         ImageIcon image = new ImageIcon(url);
         label.setIcon(image);
+    }
+
+    /**
+     * @param message to show at screen
+     */
+    public void showError(String message) {
+        String title = "Fail at client " + legend.getText();
+        JOptionPane.showMessageDialog(panel, message, title, ERROR_MESSAGE);
     }
 }

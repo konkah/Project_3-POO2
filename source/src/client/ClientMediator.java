@@ -48,6 +48,7 @@ public class ClientMediator implements Mediator {
      */
     @Override
     public void handleError(Exception error) {
+        window.showError(error.getMessage());
         error.printStackTrace();
     }
 

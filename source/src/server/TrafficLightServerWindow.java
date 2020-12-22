@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 import static common.TrafficLightState.*;
+import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
 /**
  * Main GUI of the client program
@@ -151,5 +152,13 @@ public class TrafficLightServerWindow {
                 .map(c -> (JLabel)c)
                 .filter(c -> c.getText().equals(client.toString()))
                 .findFirst().orElse(null);
+    }
+
+    /**
+     * @param message to show at screen
+     */
+    public void showError(String message) {
+        String title = "Fail at server";
+        JOptionPane.showMessageDialog(panel, message, title, ERROR_MESSAGE);
     }
 }

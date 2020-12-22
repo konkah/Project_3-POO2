@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import static common.Settings.*;
+
 public class Help {
     private JPanel panel;
     private JTextArea content;
@@ -30,7 +32,12 @@ public class Help {
                     .append(path);
         }
 
-        this.content.setText(content.toString());
+        String text = content.toString()
+                .replace("{{SERVER_IP}}", SERVER_IP)
+                .replace("{{SERVER_PORT}}", String.valueOf(SERVER_PORT))
+                .replace("{{CLIENTS_LIMIT}}", String.valueOf(CLIENTS_LIMIT));
+
+        this.content.setText(text);
         this.content.setBackground(panel.getBackground());
         this.content.setCaretPosition(0);
     }

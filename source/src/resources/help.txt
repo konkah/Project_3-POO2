@@ -10,3 +10,6 @@ Technical stuff:
 – The program was written in Java 1.8 and runs on most of desktop and notebook operating systems;
 – No user information is collected, stored, or transmitted by the program;
 – The server and client ports must be opened to allow communication between them;
+- The IP the program puts the server is {{SERVER_IP}};
+- The Port the server program listen is {{SERVER_PORT}};
+- There is a clients limit of {{CLIENTS_LIMIT}} to connect to the server;

@@ -22,7 +22,9 @@ public abstract class NetworkManager {
             start();
             initialized = true;
         } catch (SocketException | UnknownHostException e) {
-            mediator.handleError(e);
+            mediator.handleError(
+                    new Exception("Problem to start connection", e)
+            );
             initialized = false;
         }
     }
@@ -61,17 +63,18 @@ public abstract class NetworkManager {
 
         try {
             socket.receive(packet);
-
-            InetAddress address = packet.getAddress();
-            int port = packet.getPort();
-            Counterpart counterpart = new Counterpart(address, port);
-
-            String message = new String(packet.getData());
-
-            mediator.handleSuccessReceive(counterpart, message);
         } catch (IOException e) {
-            mediator.handleError(e);
+            mediator.handleError(new Exception("Error on receiving packet", e));
+            return;
         }
+
+        InetAddress address = packet.getAddress();
+        int port = packet.getPort();
+        Counterpart counterpart = new Counterpart(address, port);
+
+        String message = new String(packet.getData());
+
+        mediator.handleSuccessReceive(counterpart, message);
     }
 
     protected void send(String message) {
@@ -107,7 +110,9 @@ public abstract class NetworkManager {
         try {
             socket.send(packet);
         } catch (IOException e) {
-            mediator.handleError(e);
+            mediator.handleError(
+                    new Exception("Error on sending to " + counterpart.toString(), e)
+            );
         }
     }
 }
